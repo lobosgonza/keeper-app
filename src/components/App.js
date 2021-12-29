@@ -5,35 +5,40 @@ import Note from "./Note";
 import CreateArea from "./CreateArea";
 
 function App() {
+  var [cards, setCards] = useState([]);
 
-  var [cards, setCards] = useState([{title: "", content: ""}]);
-
-function addCard(inputCard){
-  console.log(inputCard);
-  setCards( prevCards =>{
-    return [...prevCards, inputCard]
-  });
-}
-
-function deleteCard(id){
- 
-  setCards( prevCards => { 
-    return prevCards.filter((eachCard,index)=>{
-      return index !== id;
+  function addCard(newCard) {
+    // console.log(inputCard);
+    setCards((prevCards) => {
+      return [...prevCards, newCard];
     });
+  }
+
+  function deleteCard(id) {
+    setCards((prevCards) => {
+      return prevCards.filter((eachCard, index) => {
+        return index !== id;
+      });
     });
-};
+  }
 
   return (
     <div>
       <Header />
-      <CreateArea onAdd={addCard}/>
+      <CreateArea onAdd={addCard} />
 
-     { cards.map((card,index)=>{ 
-       return <Note key={index} id={index} title={card.title} content={card.content} onDelete={deleteCard} />
-     }
-     )}
-     
+      {cards.map((card, index) => {
+        return (
+          <Note
+            key={index}
+            id={index}
+            title={card.title}
+            content={card.content}
+            onDelete={deleteCard}
+          />
+        );
+      })}
+
       <Footer />
     </div>
   );
