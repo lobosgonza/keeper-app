@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import Fab from "@mui/material/Fab";
 import Zoom from "@mui/material/Zoom";
-import { Alert } from "@mui/material";
 
 function CreateArea(props) {
   const [inputCard, serInputCard] = useState({ title: "", content: "" });
@@ -65,7 +64,12 @@ function handleUnselect(){
         />
 
         <Zoom in={true}>
-          <Fab onClick={submitInputCard}>
+          <Fab 
+          style={{backgroundColor : props.styleColor}}
+          onClick={submitInputCard}
+        // TODO  onMouseOver={()=>{console.log("over")}}
+          >
+          
             <AddIcon />
           </Fab>
         </Zoom>
